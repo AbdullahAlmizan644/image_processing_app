@@ -1,0 +1,85 @@
+{% extends "seek/base.html" %}
+{% block title %} Home {% endblock %}
+{% block content %}
+{% load static %}
+
+
+
+  <div class="banner">
+    <div class="container">
+      <h1 class="font-weight-semibold">Search People Data <br>Using Image</h1>
+      <h6 class="font-weight-normal text-muted pb-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae
+        rem autem odit veniam voluptatibus reiciendis itaque, officia fuga vero maiores?.</h6>
+      <div>
+        <a href="{% url 'image_search' %}"><button class="btn btn-opacity-light mr-1">Get started</button></a>
+        <a href="{% url 'about' %}"><button class="btn btn-opacity-success ml-1">Learn more</button></a>
+      </div>
+      <img src="{% static 'seek/images/group.svg' %}" alt="" class="img-fluid">
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <div class="container">
+      <section class="features-overview" id="features-section">
+        <div class="content-header">
+          <h1>How does it works</h1>
+          <!-- <h6 class="section-subtitle text-muted">One theme that serves as an easy-to-use operational toolkit<br>that meets customer's needs.</h6> -->
+        </div>
+        <div class="d-md-flex justify-content-between">
+          <div class="grid-margin d-flex justify-content-start">
+            <div class="features-width">
+              <img src="{% static 'seek/images/user.png' %}" alt="" class="img-icons">
+              <h5 class="py-3">Person Image</h5>
+              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+              <a href="#"><p class="readmore-link">Readmore</p></a>  
+            </div>
+          </div>
+          <div class="grid-margin d-flex justify-content-center">
+            <div class="features-width">
+              <img src="{% static 'seek/images/nid.png' %}" alt="" class="img-icons">
+              <h5 class="py-3">National id</h5>
+              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+              <a href="#"><p class="readmore-link">Readmore</p></a>
+            </div>
+          </div>
+          <div class="grid-margin d-flex justify-content-end">
+            <div class="features-width">
+              <img src="{% static 'seek/images/finger.png' %}" alt="" class="img-icons">
+              <h5 class="py-3">Fingerprint</h5>
+              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
+              <a href="#"><p class="readmore-link">Readmore</p></a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="digital-marketing-service" id="digital-marketing-section">
+        <div class="row align-items-center">
+          <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
+            <h3 class="m-0">Lorem ipsum dolor sit</h3>
+            <div class="col-lg-7 col-xl-6 p-0">
+              <p class="py-4 m-0 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus
+                consectetuer turpis, suspendisse.</p>
+              <p class="font-weight-medium text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus
+                consectetuer</p>
+            </div>
+          </div>
+          <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
+            <img src="{% static 'seek/images/Group1.png' %}" alt="" class="img-fluid">
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-12 col-lg-7 text-center flex-item grid-margin" data-aos="fade-right">
+            <img src="{% static 'seek/images/Group2.png' %}" alt="" class="img-fluid">
+          </div>
+          <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-left">
+            <h3 class="m-0">Lorem ipsum dolor sit amet </h3>
+            <div class="col-lg-9 col-xl-8 p-0">
+              <p class="py-4 m-0 text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum aliquid
+                corporis est voluptatibus ea, aspernatur excepturi possimus quibusdam modi iusto?</p>
+            </div>
+            <!-- <button class="btn btn-info">Readmore</button> -->
+          </div>
+        </div>
+      </section>
+
+
+{% endblock %}

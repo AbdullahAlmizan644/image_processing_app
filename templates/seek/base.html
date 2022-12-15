@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>{% block title %} {% endblock %}| Seek</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'seek/vendors/owl-carousel/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'seek/vendors/owl-carousel/css/owl.theme.default.css' %}">
+    <link rel="stylesheet" href="{% static 'seek/vendors/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'seek/vendors/aos/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'seek/css/style.min.css' %}">
+    {% block head %} {% endblock %}
+</head>
+
+<body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
+    <header id="header-section">
+        <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
+            <div class="container">
+                <div class="navbar-brand-wrapper d-flex w-100">
+                    <img src="{% static 'seek/images/logo.svg' %} " alt="">
+                    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="mdi mdi-menu navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse navbar-menu-wrapper" id="navbarSupportedContent">
+                    <ul class="navbar-nav align-items-lg-center align-items-start ml-auto">
+                        <li class="d-flex align-items-center justify-content-between pl-4 pl-lg-0">
+                            <div class="navbar-collapse-logo">
+                                <img src="{% static 'seek/images/logo.svg' %}" alt="">
+                            </div>
+                            <button class="navbar-toggler close-button" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="mdi mdi-close navbar-toggler-icon pl-5"></span>
+                            </button>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">Home</a>
+                        </li>
+                        
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li> -->
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'image_search' %}">Image</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Nid</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Fingerprint</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">Dashboard</a>
+                        </li>
+
+                        {% if "user" in request.session %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout_user' %}">Logout</a>
+                        </li>
+                        {% endif %}
+
+                        <li class="nav-item btn-contact-us pl-4 pl-lg-0">
+                            <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Contact
+                                Us</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    {% block content %} {% endblock %}
+
+    <footer class="border-top">
+        <p class="text-center text-muted pt-4">Copyright © All rights reserved | Seek.</p>
+
+    </footer>
+    <!-- Modal for Contact - us Button -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">Contact Us</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="Name">Name</label>
+                            <input type="text" class="form-control" id="Name" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input type="email" class="form-control" id="Email-1" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="Message">Message</label>
+                            <textarea class="form-control" id="Message" placeholder="Enter your Message"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="{% static 'seek/vendors/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'seek/vendors/bootstrap/bootstrap.min.js' %}"></script>
+    <script src="{% static 'seek/vendors/owl-carousel/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'seek/vendors/aos/js/aos.js' %}"></script>
+    <script src="{% static 'seek/js/landingpage.js' %}"></script>
+</body>
+
+</html>
