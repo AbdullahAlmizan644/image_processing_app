@@ -44,11 +44,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'index' %}">Home</a>
                         </li>
-                        
+
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="{% url 'login' %}">Login</a>
                         </li> -->
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'about' %}">About</a>
                         </li>
@@ -64,14 +64,25 @@
                             <a class="nav-link" href="">Fingerprint</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin">Dashboard</a>
+                            <a class="nav-link" href="{% url 'admin:index' %}">Dashboard</a>
                         </li>
 
-                        {% if "user" in request.session %}
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout_user' %}">Logout</a>
+                            <a class="nav-link" href="#">{{request.user}} </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_logout' %}">Logout</a>
+                        </li>
+                        {% else %}
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+
                         {% endif %}
+                        
 
                         <li class="nav-item btn-contact-us pl-4 pl-lg-0">
                             <button class="btn btn-info" data-toggle="modal" data-target="#exampleModal">Contact
@@ -82,6 +93,11 @@
             </div>
         </nav>
     </header>
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
 
 
     {% block content %} {% endblock %}
