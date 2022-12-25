@@ -5,81 +5,121 @@
 
 
 
-  <div class="banner">
-    <div class="container">
-      <h1 class="font-weight-semibold">Search People Data <br>Using Image</h1>
-      <h6 class="font-weight-normal text-muted pb-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae
-        rem autem odit veniam voluptatibus reiciendis itaque, officia fuga vero maiores?.</h6>
-      <div>
-        <a href="{% url 'image_search' %}"><button class="btn btn-opacity-light mr-1">Get started</button></a>
-        <a href="{% url 'about' %}"><button class="btn btn-opacity-success ml-1">Learn more</button></a>
-      </div>
-      <img src="{% static 'seek/images/group.svg' %}" alt="" class="img-fluid">
+<div class="banner">
+  <div class="container">
+    <h1 class="font-weight-semibold">Search People Using Image</h1>
+    <h6 class="font-weight-normal text-muted pb-3">Welcome to seek ,here you can search for people using
+      images. Our advanced image recognition and search technology makes it easy to find information about
+      individuals by uploading an image. Whether you're trying to reconnect with
+      an old friend, identify someone in a photo, or learn more about a celebrity, our web app has you
+      covered. With a vast database of images, our web app is an essential tool for anyone looking to find
+      information about people using images. Try it out today and see how easy it is to find the people you're
+      looking for. </h6>
+    <div>
+      <a href="{% url 'image_search' %}"><button class="btn btn-opacity-light mr-1">Get started</button></a>
+      <a href="{% url 'about' %}"><button class="btn btn-opacity-success ml-1">Learn more</button></a>
     </div>
+    <img src="{% static 'seek/images/group.svg' %}" alt="" class="img-fluid">
   </div>
-  <div class="content-wrapper">
-    <div class="container">
-      <section class="features-overview" id="features-section">
-        <div class="content-header">
-          <h1>How does it works</h1>
-          <!-- <h6 class="section-subtitle text-muted">One theme that serves as an easy-to-use operational toolkit<br>that meets customer's needs.</h6> -->
-        </div>
-        <div class="d-md-flex justify-content-between">
-          <div class="grid-margin d-flex justify-content-start">
-            <div class="features-width">
-              <img src="{% static 'seek/images/user.png' %}" alt="" class="img-icons">
-              <h5 class="py-3">Person Image</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>  
-            </div>
-          </div>
-          <div class="grid-margin d-flex justify-content-center">
-            <div class="features-width">
-              <img src="{% static 'seek/images/nid.png' %}" alt="" class="img-icons">
-              <h5 class="py-3">National id</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>
-            </div>
-          </div>
-          <div class="grid-margin d-flex justify-content-end">
-            <div class="features-width">
-              <img src="{% static 'seek/images/finger.png' %}" alt="" class="img-icons">
-              <h5 class="py-3">Fingerprint</h5>
-              <p class="text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus consectetuer turpis, suspendisse.</p>
-              <a href="#"><p class="readmore-link">Readmore</p></a>
-            </div>
+</div>
+<div class="content-wrapper">
+  <div class="container">
+    <section class="features-overview" id="features-section">
+      <div class="content-header">
+        <h1>How does it works</h1>
+        <!-- <h6 class="section-subtitle text-muted">One theme that serves as an easy-to-use operational toolkit<br>that meets customer's needs.</h6> -->
+      </div>
+      <div class="d-md-flex justify-content-between">
+        <div class="grid-margin d-flex justify-content-start">
+          <div class="features-width">
+            <img src="{% static 'seek/images/user.png' %}" alt="" class="img-icons">
+            <h5 class="py-3">Person Image</h5>
+            <p class="text-muted">Our application allows users to search for information about people using images. By
+              uploading an image of a person or entering the image's URL, users can search through a database of images
+              to find information about the person in the image. This can be useful for identifying individuals in
+              photos, finding out more about people you may have met, or tracking down the original source of an image.
+            </p>
+            <!-- <a href="#">
+              <p class="readmore-link">Readmore</p>
+            </a> -->
           </div>
         </div>
-      </section>
-      <section class="digital-marketing-service" id="digital-marketing-section">
-        <div class="row align-items-center">
-          <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
-            <h3 class="m-0">Lorem ipsum dolor sit</h3>
-            <div class="col-lg-7 col-xl-6 p-0">
-              <p class="py-4 m-0 text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus
-                consectetuer turpis, suspendisse.</p>
-              <p class="font-weight-medium text-muted">Lorem ipsum dolor sit amet, tincidunt vestibulum. Fusce egeabus
-                consectetuer</p>
-            </div>
-          </div>
-          <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
-            <img src="{% static 'seek/images/Group1.png' %}" alt="" class="img-fluid">
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-12 col-lg-7 text-center flex-item grid-margin" data-aos="fade-right">
-            <img src="{% static 'seek/images/Group2.png' %}" alt="" class="img-fluid">
-          </div>
-          <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-left">
-            <h3 class="m-0">Lorem ipsum dolor sit amet </h3>
-            <div class="col-lg-9 col-xl-8 p-0">
-              <p class="py-4 m-0 text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum aliquid
-                corporis est voluptatibus ea, aspernatur excepturi possimus quibusdam modi iusto?</p>
-            </div>
-            <!-- <button class="btn btn-info">Readmore</button> -->
+        <div class="grid-margin d-flex justify-content-center">
+          <div class="features-width">
+            <img src="{% static 'seek/images/nid.png' %}" alt="" class="img-icons">
+            <h5 class="py-3">National id</h5>
+            <p class="text-muted">Our application allows users to search for information about individuals by uploading an
+              image of their national identification card or entering the image's URL. By using advanced image
+              recognition and search technology, our web app can quickly and accurately find information about the
+              person associated with the national identification card. This can be useful for verifying the identity of
+              an individual, checking the authenticity of a national identification card, or finding out more about
+              someone.
+            </p>
+            <!-- <a href="#">
+              <p class="readmore-link">Readmore</p>
+            </a> -->
           </div>
         </div>
-      </section>
+        <div class="grid-margin d-flex justify-content-end">
+          <div class="features-width">
+            <img src="{% static 'seek/images/finger.png' %}" alt="" class="img-icons">
+            <h5 class="py-3">Fingerprint</h5>
+            <p class="text-muted">Our application allows users to search for information about individuals by uploading an
+              image of their fingerprint or entering the image's URL. By using advanced image recognition and search
+              technology, our web app can quickly and accurately find information about the person associated with the
+              fingerprint. This can be useful for verifying the identity of an individual, checking the authenticity of
+              a fingerprint, or finding out more about someone. </p>
+            <!-- <a href="#">
+              <p class="readmore-link">Readmore</p>
+            </a> -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="digital-marketing-service" id="digital-marketing-section">
+      <div class="row align-items-center">
+        <div class="col-12 col-lg-7 grid-margin grid-margin-lg-0" data-aos="fade-right">
+          <h3 class="m-0">You can upload Your photo and give your data to us.</h3>
+          <div class="col-lg-7 col-xl-6 p-0">
+            <p class="py-4 m-0 text-muted">To upload your photo and provide your data in our web app, follow these
+              steps:
+
+            <ul>
+              <li>Go to the web app and locate the section or form where you can upload your photo and enter your data.
+              </li>
+              <li>Click on the "Browse" or "Choose File" button to select the photo you want to upload from your device
+                or computer.</li>
+              <li>Once you have selected the photo, it will be uploaded to the web app.</li>
+              <li> Enter your data in the designated fields. This may include information such as your name, contact
+                details, address, and any other relevant information.</li>
+              <li> Make sure to carefully review the information you have entered to ensure that it is accurate and
+                complete.</li>
+              <li> Once you have reviewed and verified the accuracy of your data, submit the form by clicking the
+                "Submit" or "Save" button.</li>
+            </ul>
+            Your photo and data will be processed and added to the web app's database.</p>
+          </div>
+        </div>
+        <div class="col-12 col-lg-5 p-0 img-digital grid-margin grid-margin-lg-0" data-aos="fade-left">
+          <img src="{% static 'seek/images/Group1.png' %}" alt="" class="img-fluid">
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-12 col-lg-7 text-center flex-item grid-margin" data-aos="fade-right">
+          <img src="{% static 'seek/images/Group2.png' %}" alt="" class="img-fluid">
+        </div>
+        <div class="col-12 col-lg-5 flex-item grid-margin" data-aos="fade-left">
+          <h3 class="m-0">We do not share your data to any one</h3>
+          <div class="col-lg-9 col-xl-8 p-0">
+            <p class="py-4 m-0 text-muted">It's important to note that you should only provide accurate and up-to-date
+              information in the web app, and you should be aware of any privacy considerations or terms of use that may
+              apply. Make sure to carefully read and understand any relevant policies or agreements before providing
+              your photo and data in the web app.</p>
+          </div>
+          <!-- <button class="btn btn-info">Readmore</button> -->
+        </div>
+      </div>
+    </section>
 
 
-{% endblock %}
+    {% endblock %}
