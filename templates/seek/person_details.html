@@ -1,0 +1,47 @@
+{% extends "seek/base.html" %}
+{% load static %}
+{% block title %} person details {% endblock %}
+{% block content %}
+
+
+<body>
+    <div class="container">
+        <div class="row">
+
+            <img src="{{ result.person_image }}" class="img-fluid" alt="...">
+            <dl class="row">
+                <dt class="col-sm-3">Name</dt>
+                <dd class="col-sm-9">{{result.first_name}}{{result.last_name}}</dd>
+
+                <dt class="col-sm-3">Gender</dt>
+                <dd class="col-sm-9">{{result.gender}}</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">{{result.email}}</dd>
+
+                <dt class="col-sm-3">Dvision</dt>
+                <dd class="col-sm-9">{{result.division}}</dd>
+
+                <dt class="col-sm-3">District</dt>
+                <dd class="col-sm-9">{{result.district}}</dd>
+
+                <dt class="col-sm-3">Address</dt>
+                <dd class="col-sm-9">{{result.address}}</dd>
+
+                <dt class="col-sm-3">Present Address</dt>
+                <dd class="col-sm-9">{{result.present_address}}</dd>
+
+                <dt class="col-sm-3">About</dt>
+                <dd class="col-sm-9">
+                    <p>{{result.about}}</p>
+                </dd>
+
+            </dl>
+        </div>
+    </div>
+</body>
+
+
+
+
+{% endblock %}

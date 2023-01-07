@@ -2,6 +2,12 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+import cv2
+import numpy as np
+import os
+from image_processing_app.settings import PROJECT_ROOT,STATICFILES_DIRS
+from .models import Person
+import face_recognition
 
 
 # Create your views here.
@@ -72,7 +78,104 @@ def signup(request):
 
 def image_search(request):
     if request.user.is_authenticated:
+        if request.method=="POST":
+            image = request.POST['image']
+            print(image)
+            
+            original = cv2.imread(f"/home/zeus/Desktop/{image}",0)
+            print(original)
+
+            persons=Person.objects.all()
+            all_image=[p.person_image for p in persons]
+
+            count=0
+            for single_image in all_image:
+                print(single_image)
+                duplicate = cv2.imread(f"{single_image}",0)
+                print(duplicate)
+
+
+
+                if original.shape == duplicate.shape:
+                    print("The images have same size and channels")
+                    difference = cv2.subtract(original, duplicate)
+                    print(difference)
+                    print(count)
+                    # b, g, r = cv2.split(difference)
+
+                    if cv2.countNonZero(difference[count]) == 0 and cv2.countNonZero(difference[count+1]) == 0 and cv2.countNonZero(difference[count+2]) == 0:
+                        print("The images are completely Equal")
+                        # cur=db.connection.cursor()
+                        # cur.execute("select * from person where image=%s",(a,))
+                        # result=cur.fetchone()
+                        result=Person.objects.filter(person_image=single_image).first()
+                        print(result)
+                        break
+
+                else:
+                    print("the images are not equal")
+                    result=0
+            
+                count=count+3
+            
+            if result==0:
+                messages.error(request,"no person on that image")
+                return redirect(image_search)
+        
+            return render(request,"seek/person_details.html",{
+                "result":result,
+            })
         return render(request, "seek/image_search.html")
+
+    else:
+        return redirect(user_login)
+
+
+    
+def face_search(request):
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            image = request.POST['image']
+            print(image)
+
+            unknown_image = face_recognition.load_image_file(f"/home/zeus/Desktop/{image}",)
+
+
+            persons=Person.objects.all()
+            all_image=[p.person_image for p in persons]
+            
+            try:
+                unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
+
+            except IndexError:
+                messages.error(request,"Please give a person image not any fictional object")
+                return redirect(face_search)
+
+            for single_image in all_image:
+                print(single_image)
+                known_image = face_recognition.load_image_file(f"{single_image}")
+                known_encoding = face_recognition.face_encodings(known_image)[0]
+                r = face_recognition.compare_faces([known_encoding], unknown_encoding)
+                # print(r)
+            
+                if r==[True]:
+                    # print(known_encoding)
+                    # print(unknown_encoding)
+                    result=Person.objects.filter(person_image=single_image).first()
+                    return render(request,"seek/person_details.html",{
+                        "result":result,
+                        })
+
+            messages.error(request,"Not found same face person ")
+            return redirect(face_search)
+        return render(request, "seek/face_search.html")
+
+    else:
+        return redirect(user_login)
+
+def person_details(request):
+    if request.user.is_authenticated:
+        return render(request, "seek/person_details.html")
 
     else:
         return redirect(user_login)

@@ -130,3 +130,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_TAGS={
     messages.ERROR:'danger',
 }
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))

@@ -21,5 +21,5 @@ class Person(models.Model):
     date=models.DateField()
 
     def __str__(self):
-        return f"{self.last_name}"
+        return f"id:{self.id} name:{self.first_name} {self.last_name}"
 
