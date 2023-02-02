@@ -8,7 +8,8 @@ import os
 from image_processing_app.settings import PROJECT_ROOT,STATICFILES_DIRS
 from .models import Person
 import face_recognition
-
+from .models import Person
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def index(request):
@@ -153,10 +154,10 @@ def face_search(request):
 
             for single_image in all_image:
                 print(single_image)
-                known_image = face_recognition.load_image_file(f"{single_image}")
+                known_image = face_recognition.load_image_file(f"media/{single_image}")
                 known_encoding = face_recognition.face_encodings(known_image)[0]
                 r = face_recognition.compare_faces([known_encoding], unknown_encoding)
-                # print(r)
+                print(r)
             
                 if r==[True]:
                     # print(known_encoding)
@@ -185,5 +186,83 @@ def about(request):
     return render(request, "seek/about.html")
 
 
+def profile(request):
+    if request.user.is_authenticated:
+        return render(request, "seek/profile.html",{
+            "user":request.user,
+        })
+
+    else:
+        return redirect(user_login)
 
 
+
+def add_user_data(request):
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            first_name=request.POST.get("first_name")
+            last_name=request.POST.get("last_name")
+            email=request.POST.get("email")
+            division=request.POST.get("division")
+            district=request.POST.get("district")
+            address=request.POST.get("address")
+            present_address=request.POST.get("present_address")
+            about=request.POST.get("about")
+            gender=request.POST.get("gender")
+            nid_number=request.POST.get("nid_number")
+            date=request.POST.get("date")
+            personal_number=request.POST.get("personal_number")
+            relative_number=request.POST.get("relative_number")
+            emergency_number=request.POST.get("emergency_number")
+            # =request.POST.get("")
+
+
+
+            #images
+            person_image=request.FILES["person_image"]
+            nid_image=request.FILES["nid_image"]
+            fingerprint_image=request.FILES["fingerprint_image"]
+
+            fss=FileSystemStorage()
+
+            person_image_file=fss.save(person_image.name, person_image)
+            person_image_url=fss.url(person_image_file)
+
+
+            nid_image_file=fss.save(nid_image.name, nid_image)
+            nid_image_url=fss.url(nid_image_file)
+
+            fingerprint_image_file=fss.save(fingerprint_image.name, fingerprint_image)
+            fingerprint_image_url=fss.url(fingerprint_image_file)
+
+
+
+
+            person_data=Person(first_name=first_name,
+                    last_name=last_name,
+                    email=email,
+                    division=division,
+                    district=district,
+                    address=address,
+                    present_address=present_address,
+                    about=about,
+                    gender=gender,
+                    nid_number=nid_number,
+                    nid_image=nid_image_url,
+                    person_image=person_image_url,
+                    fingerprint_image=fingerprint_image_url,
+                    date=date,
+                    personal_number=personal_number,
+                    relative_number=relative_number,
+                    emergency_number=emergency_number)
+
+            person_data.save()
+            messages.success(request, "Your data add successfully")
+            return redirect("/")
+            
+        return render(request, "seek/add_user_data.html",{
+            "user":request.user,
+        })
+
+    else:
+        return redirect(user_login)

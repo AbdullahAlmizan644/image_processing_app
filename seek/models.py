@@ -14,10 +14,13 @@ class Person(models.Model):
     about=models.CharField(max_length=1000)
     GENDER = (('M', 'Male'), ('F', 'Female'), ('O', 'Other'))
     gender = models.CharField(max_length=1, choices=GENDER, null=True)
+    personal_number=models.IntegerField()
+    relative_number=models.IntegerField()
+    emergency_number=models.IntegerField()
     nid_number=models.IntegerField()
-    person_image=models.ImageField(upload_to="static/seek/images/")
-    nid_image=models.ImageField(upload_to="static/seek/images/")
-    fingerprint_image=models.ImageField(upload_to="static/seek/images/")
+    person_image=models.ImageField(upload_to="")
+    nid_image=models.ImageField(upload_to="")
+    fingerprint_image=models.ImageField(upload_to="")
     date=models.DateField()
 
     def __str__(self):

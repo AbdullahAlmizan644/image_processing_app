@@ -1,0 +1,162 @@
+{% extends "seek/base.html" %}
+{% load static %}
+{% block title %} Add User Data {% endblock %}
+{% block content %}
+
+
+<div class="container">
+    <h1 style="text-align: center;">Add Your Data</h1>
+    <hr>
+    <form action="{% url 'add_user_data' %}" method="post" id="team" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">First Name</label>
+            <input type="text" name="first_name" class="form-control" id="TeamName" placeholder="First name" required>
+        </div>
+
+        <hr>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Last Name</label>
+            <input type="text" name="last_name" class="form-control" id="tournament" placeholder="Last name" required> 
+        </div>
+        <hr>
+
+        <div class="mb-3">
+
+            <label for="exampleFormControlInput1" class="form-label">Gender:</label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Male" required>
+                <label class="form-check-label" for="inlineRadio1">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Female" required>
+                <label class="form-check-label" for="inlineRadio2">Female</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Other" required>
+                <label class="form-check-label" for="inlineRadio2">Other</label>
+            </div>
+    
+            
+        </div>
+
+
+        <hr>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email</label>
+            <input type="text" name="email" class="form-control" id="tournament" placeholder="Email" required>
+        </div> 
+
+        <hr>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Division</label>
+            <input type="text" name="division" class="form-control" id="tournament" placeholder="Division" required>
+        </div>
+
+        <hr>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">District</label>
+            <input type="text" name="district" class="form-control" id="tournament" placeholder="District" required>
+        </div>
+
+        <hr>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Address</label>
+            <input type="text" name="address" class="form-control" id="tournament" placeholder="address" required>
+        </div>
+
+        <hr>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Present Address</label>
+            <input type="text" name="present_address" class="form-control" id="tournament"
+                placeholder="Present Address" required>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">About</label>
+            <input type="text" name="about" class="form-control" id="tournament" placeholder="about" required>
+        </div>
+        <hr>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Personal Number</label>
+            <input type="number" name="personal_number" class="form-control" id="tournament"
+                placeholder="Personal Number" required>
+        </div>
+
+        <hr>
+
+
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Relative Number</label>
+            <input type="number" name="relative_number" class="form-control" id="tournament"
+                placeholder="Relative Number" required>
+        </div>
+
+        <hr>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">emergency Number</label>
+            <input type="number" name="emergency_number" class="form-control" id="tournament"
+                placeholder="Emergency Number" requires>
+        </div>
+
+        <hr>
+
+
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">your image</label>
+            <input type="file" name="person_image" class="form-control" id="inputGroupFile01" requires>
+        </div>
+
+        <hr>
+
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">Nid Image</label>
+            <input type="file" name="nid_image" class="form-control" id="inputGroupFile01" requires>
+        </div>
+
+
+        <hr>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nid Number</label>
+            <input type="number" name="nid_number" class="form-control" id="tournament" placeholder="Nid Number" requires>
+        </div>
+
+        <hr>
+
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">fingerprint Image</label>
+            <input type="file" name="fingerprint_image" class="form-control" id="inputGroupFile01" requires>
+        </div>
+
+        <hr>
+         
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Date</label>
+            <input type="date" name="date" class="form-control" id="tournament"
+                placeholder="date" requires>
+        </div>
+
+        <hr>
+
+        <div class="input-group mb-3">
+            <input type="submit" form="team" value="save" class="btn btn-primary" id="inputGroupFile01">
+        </div>
+
+    </form>
+</div>
+
+
+{% endblock %}

@@ -8,7 +8,8 @@
     <div class="container">
         <div class="row">
 
-            <img src="{{ result.person_image }}" class="img-fluid" alt="...">
+            <!-- <img src="{{ media_root }}{{ result.person_image.name }}" "class="img-fluid" alt="..."> -->
+            <img src="{{result.person_image}}" "class="img-fluid" alt="..." />
             <dl class="row">
                 <dt class="col-sm-3">Name</dt>
                 <dd class="col-sm-9">{{result.first_name}}{{result.last_name}}</dd>
@@ -19,7 +20,7 @@
                 <dt class="col-sm-3">Email</dt>
                 <dd class="col-sm-9">{{result.email}}</dd>
 
-                <dt class="col-sm-3">Dvision</dt>
+                <dt class="col-sm-3">Division</dt>
                 <dd class="col-sm-9">{{result.division}}</dd>
 
                 <dt class="col-sm-3">District</dt>
@@ -34,6 +35,21 @@
                 <dt class="col-sm-3">About</dt>
                 <dd class="col-sm-9">
                     <p>{{result.about}}</p>
+                </dd>
+
+                <dt class="col-sm-3">Personal Number</dt>
+                <dd class="col-sm-9">
+                    <p>{{result.personal_number}}</p>
+                </dd>
+
+                <dt class="col-sm-3">Relative Number</dt>
+                <dd class="col-sm-9">
+                    <p>{{result.relative_number}}</p>
+                </dd>
+
+                <dt class="col-sm-3">Emergency Number</dt>
+                <dd class="col-sm-9">
+                    <p>{{result.emergency_number}}</p>
                 </dd>
 
             </dl>

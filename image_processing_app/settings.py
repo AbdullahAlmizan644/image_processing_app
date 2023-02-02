@@ -132,3 +132,8 @@ MESSAGE_TAGS={
 }
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
+
+MEDIA_URL = ''
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

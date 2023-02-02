@@ -11,5 +11,7 @@ urlpatterns=[
     path("face_search",views.face_search,name="face_search"),
     path("person_details",views.person_details,name="person_details"),
     path("about",views.about,name="about"),
+    path("profile",views.profile,name="profile"),
+    path("add_user_data",views.add_user_data,name="add_user_data")
 
 ]
