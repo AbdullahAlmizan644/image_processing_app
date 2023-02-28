@@ -1,0 +1,63 @@
+{% extends "seek/base.html" %}
+{% block title %} Fingerprint {% endblock %}
+{% block content %}
+
+{% load static %}
+{% block head %}
+
+<!-- <link rel="stylesheet" href="{% static 'seek/drag/css/style.css' %}"> -->
+
+{% endblock %}
+
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card border-0 shadow rounded-3 my-5">
+                    <div class="card-body p-4 p-sm-5">
+                        <h5 class="card-title text-center mb-5 fw-light fs-5">Search Data Using fingerprint image</h5>
+                        <form action="{% url 'fingerprint_search' %}" method="post" id="signup">
+                            {% csrf_token %}
+                            <div>
+                                <label for="formFileLg" class="form-label">Add image</label>
+                                <input class="form-control form-control-lg" name="image" id="formFileLg" type="file" required>
+
+                            </div>
+                            <div class="my-3">
+                                <button class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<div class="container">
+
+</div>
+
+
+<!-- <div class="drag-container">
+    <div class="drag-area">
+        
+        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <h1 style="text-align: center;">Search Data Using image</h1>
+        <header>Drag & Drop to Upload File</header>
+        <span>OR</span>
+        <button>Browse File</button>
+        <input type="file" hidden>
+    </div>
+
+</div> -->
+
+
+<!-- <script src="{% static 'seek/drag/js/script.js'%} "></script> -->
+
+
+
+
+{% endblock %}

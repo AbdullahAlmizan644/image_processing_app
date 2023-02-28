@@ -77,7 +77,7 @@ def signup(request):
     return render(request, "seek/signup.html")
 
 
-def image_search(request):
+def fingerprint_search(request):
     if request.user.is_authenticated:
         if request.method=="POST":
             image = request.POST['image']
@@ -121,12 +121,12 @@ def image_search(request):
             
             if result==0:
                 messages.error(request,"no person on that image")
-                return redirect(image_search)
+                return redirect(fingerprint_search)
         
             return render(request,"seek/person_details.html",{
                 "result":result,
             })
-        return render(request, "seek/image_search.html")
+        return render(request, "seek/fingerprint_search.html")
 
     else:
         return redirect(user_login)
@@ -266,3 +266,15 @@ def add_user_data(request):
 
     else:
         return redirect(user_login)
+
+
+
+
+    
+def nid_search(request):
+    return render(request,"nid.html")
+
+
+
+def user_message(request):
+    pass
