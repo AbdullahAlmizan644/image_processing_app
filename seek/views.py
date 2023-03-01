@@ -6,10 +6,13 @@ import cv2
 import numpy as np
 import os
 from image_processing_app.settings import PROJECT_ROOT,STATICFILES_DIRS
-from .models import Person
+from .models import Person,UserImage
 import face_recognition
-from .models import Person
+from .models import Person,Contact
 from django.core.files.storage import FileSystemStorage
+import pytesseract
+import re
+
 
 # Create your views here.
 def index(request):
@@ -80,19 +83,31 @@ def signup(request):
 def fingerprint_search(request):
     if request.user.is_authenticated:
         if request.method=="POST":
-            image = request.POST['image']
-            print(image)
+            image=request.FILES["image"]
+            # Load the image
+            fss=FileSystemStorage()
+
+            image_file=fss.save(image.name, image)
+            image_url=fss.url(image_file)
+
+            user_image=UserImage(image=image_url)
+            user_image.save()
+
+            my_model_instance = UserImage.objects.filter(image=image_url).first()
+
+
+            # image = cv2.imread(f"media{my_model_instance.image}")
             
-            original = cv2.imread(f"/home/zeus/Desktop/{image}",0)
+            original = cv2.imread(f"media{my_model_instance.image}",0)
             print(original)
 
             persons=Person.objects.all()
-            all_image=[p.person_image for p in persons]
+            all_image=[p.fingerprint_image for p in persons]
 
             count=0
             for single_image in all_image:
                 print(single_image)
-                duplicate = cv2.imread(f"{single_image}",0)
+                duplicate = cv2.imread(f"media/{single_image}",0)
                 print(duplicate)
 
 
@@ -109,7 +124,7 @@ def fingerprint_search(request):
                         # cur=db.connection.cursor()
                         # cur.execute("select * from person where image=%s",(a,))
                         # result=cur.fetchone()
-                        result=Person.objects.filter(person_image=single_image).first()
+                        result=Person.objects.filter(fingerprint_image=single_image).first()
                         print(result)
                         break
 
@@ -272,9 +287,158 @@ def add_user_data(request):
 
     
 def nid_search(request):
-    return render(request,"nid.html")
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            image=request.FILES["nid_image"]
+            # Load the image
+            fss=FileSystemStorage()
+
+            image_file=fss.save(image.name, image)
+            image_url=fss.url(image_file)
+
+            user_image=UserImage(image=image_url)
+            user_image.save()
+
+            my_model_instance = UserImage.objects.filter(image=image_url).first()
+
+
+            image = cv2.imread(f"media{my_model_instance.image}")
+
+            # Convert the image to grayscale
+            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+            # Apply OCR using pytesseract
+            text = pytesseract.image_to_string(gray)
+
+
+            match= re.search(r'\d\d\d \d\d\d \d\d\d\d', text)
+
+            full_nid_number=match.group()
+
+            nid_number=re.sub("\s","",full_nid_number)
+            print(nid_number)
+
+
+            result=Person.objects.filter(nid_number=nid_number).first()
+
+            return render(request,"seek/person_details.html",{
+                            "result":result,
+                            })
+
+
+        return render(request,"seek/nid_search.html")
+    
+    else:
+        return redirect(user_login)
 
 
 
 def user_message(request):
-    pass
+    if request.method=="POST":
+        name=request.POST["name"]
+        email=request.POST["email"]
+        message=request.POST["message"]
+        
+        if len(name)<3 or len(email)<3 or len(message)<3:
+            messages.error(request,"Please fill the form correctly.")
+
+        else:
+            contact=Contact(name=name,email=email,message=message)
+            contact.save()
+            messages.success(request,"Thanks for your message")
+            return redirect("/")
+    return render(request,"ecommerce/contact.html")
+
+
+
+def test_search(request):
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            image=request.FILES['image']
+            print(image)
+
+            fss=FileSystemStorage()
+
+            image_file=fss.save(image.name, image)
+            image_url=fss.url(image_file)
+
+            user_image=UserImage(image=image_url)
+            user_image.save()
+
+            all_upload_image = UserImage.objects.all()
+
+
+            # all_upload_image2=[u.image for u in all_upload_image]
+
+            # unknown_image=None
+
+            # for i in all_upload_image2:
+            #     print(f"i am i:{i}")
+            #     print(f"i am image:{image}")
+            #     if i.name==image:
+            #         unknown_image = face_recognition.load_image_file(f"media/{image}",)
+
+            my_model_instance = UserImage.objects.filter(image=image_url).first()
+
+            print(f"media{my_model_instance.image}")
+
+            # print(f"this is unkonwj {unknown_image}")
+
+            unknown_image = face_recognition.load_image_file(f"media{my_model_instance.image}",)
+
+
+            persons=Person.objects.all()
+            all_image=[p.person_image for p in persons]
+                
+            try:
+                unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
+
+            except IndexError:
+                messages.error(request,"Please give a person image not any fictional object")
+                return redirect(face_search)
+
+            for single_image in all_image:
+                print(single_image)
+                known_image = face_recognition.load_image_file(f"media/{single_image}")
+                known_encoding = face_recognition.face_encodings(known_image)[0]
+                r = face_recognition.compare_faces([known_encoding], unknown_encoding)
+                print(r)
+                
+                if r==[True]:
+                        # print(known_encoding)
+                        # print(unknown_encoding)
+                    result=Person.objects.filter(person_image=single_image).first()
+                    return render(request,"seek/person_details.html",{
+                            "result":result,
+                            })
+
+            messages.error(request,"Not found same face person ")
+            return redirect(test_search)
+
+        
+        return render(request, "seek/test_search.html")
+    
+    else:
+        return redirect(user_login)
+
+    
+    
+
+
+
+def nid_number_search(request):
+    if request.user.is_authenticated:
+        if request.method=="POST":
+            number=request.POST.get("nid_number")
+
+            result=Person.objects.filter(nid_number=number).first()
+
+            return render(request,"seek/person_details.html",{
+                            "result":result,
+                            })
+
+        return render(request, "seek/nid_number_search.html")
+    
+    else:
+        return redirect(user_login)
+

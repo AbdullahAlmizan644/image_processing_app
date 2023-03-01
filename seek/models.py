@@ -28,6 +28,13 @@ class Person(models.Model):
 
 
 
+class UserImage(models.Model):
+    image=models.ImageField(upload_to="")
+
+    def __str__(self):
+        return f"{self.id} image"
+
+
 class Contact(models.Model):
     name=models.CharField(max_length=200)
     email=models.EmailField()

@@ -17,11 +17,11 @@
                 <div class="card border-0 shadow rounded-3 my-5">
                     <div class="card-body p-4 p-sm-5">
                         <h5 class="card-title text-center mb-5 fw-light fs-5">Search Using nid Image</h5>
-                        <form action="{% url 'nid_search' %}" method="post" id="signup">
+                        <form action="{% url 'nid_search' %}" method="post" id="signup" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div>
                                 <label for="formFileLg" class="form-label">Add image</label>
-                                <input class="form-control form-control-lg" name="image" id="formFileLg" type="file" required>
+                                <input class="form-control form-control-lg" name="nid_image" id="formFileLg" type="file" required>
 
                             </div>
                             <div class="my-3">

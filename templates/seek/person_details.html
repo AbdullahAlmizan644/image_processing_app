@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <!-- <img src="{{ media_root }}{{ result.person_image.name }}" "class="img-fluid" alt="..."> -->
-            <img src="{{result.person_image}}" "class="img-fluid" alt="..." />
+            <img src="{{result.person_image}}" height="400px" width="400px" alt="image" />
             <dl class="row">
                 <dt class="col-sm-3">Name</dt>
                 <dd class="col-sm-9">{{result.first_name}}{{result.last_name}}</dd>
@@ -34,6 +34,11 @@
                 <dt class="col-sm-3">About</dt>
                 <dd class="col-sm-9">
                     <p>{{result.about}}</p>
+                </dd>
+
+                <dt class="col-sm-3">Nid Number</dt>
+                <dd class="col-sm-9">
+                    <p>{{result.nid_number}}</p>
                 </dd>
 
                 <dt class="col-sm-3">Personal Number</dt>
